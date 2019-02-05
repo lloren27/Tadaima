@@ -1,0 +1,23 @@
+<div class="search-component">
+  <h4>State Search</h4>
+  <div class="results">
+    <button class="botonLimpiar" (click)="clearInput()" *ngIf="showClearButton">Limpia tu Busqueda</button>
+  </div>
+  <input #searchBox [ngClass]="{'active': limiteInputd,'search-box':!limiteInputd }" (click)="clickInInput()" (input)="search(searchBox.value)"
+    placeholder="State" />
+  <a (click)="pushTriangle()" class="icon_search"><img src="https://res.cloudinary.com/lloren27/image/upload/v1549058092/little-down-triangular-arrow.png"></a>
+  <div class="results">
+    <ul class="search-filtrable" *ngIf="closePipes">
+      <li *ngFor="let state of states$ | async" (click)="printState(state.name)">
+        {{state.name}}
+      </li>
+    </ul>
+  </div>
+  <div class="results">
+    <ul class="search-clickable" *ngIf="closeStates">
+      <li *ngFor="let state of states" (click)="printState(state.name)">
+        {{state.name}}
+      </li>
+    </ul>
+  </div>
+</div>
